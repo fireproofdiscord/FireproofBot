@@ -1,6 +1,6 @@
 # Fireproof
 Discord bot to manage guilds using git<br>
-Only supports Github (for now)<br>
+Only supports GitHub (for now)<br>
 &lt;argument&gt; denotes a required argument<br>
 \[argument\] denotes an optional argument<br>
 
@@ -8,18 +8,18 @@ All repositories made by this bot directly have the MIT license. If you want to 
 
 Any combination of commands that would add too many channels, categories, emojis, or roles will fail and you will be notified<br>
 
-Most of the [advanced commands](#advanced-commands) can be run from any git client that supports Github<br>
+Most of the [advanced commands](#advanced-commands) can be run from any git client that supports GitHub<br>
 You can even use your own repository under your account if you do this
 
 ## Terms
 ### Push
-Pushing means uploading the changes that have been made to Github, where they can be pulled
+Pushing means uploading the changes that have been made to GitHub, where they can be pulled
 ### Pull
-Pulling means downloading the changes from Github to the local machine, and in this case changing the guild structure to match
+Pulling means downloading the changes from GitHub to the local machine, and in this case changing the guild structure to match
 ### Clone
 Cloning sets the connected repository. It pulls automatically when you do it, but not after that by default.
 ### Repository
-The place on Github where your specific files are stored<br>
+The place on GitHub where your specific files are stored<br>
 This description might seem irrelevant, but the bot stores your guild information in files<br>
 You may see this shortened as `repo` in argument names, such as `repo_name` in [easypush](#easypush), but it means the same thing
 ### Connected Repository
@@ -52,18 +52,18 @@ To get your own instance, you can clone or download this repository. Before you 
 Required
 
 
-This is used for registering commands with Discord using `npm register` and `npm dev-register`. It is the client ID of your specific bot account that you want to use, which can be found in the [Discord developer portal](https://discord.com/developers/applications) in the General Information tab of your bot, under `APPLICATION ID`. If you have developer mode enabled in your Discord client, you can also right click your bot and click `copy ID`, which will give you the same ID. It should look something like `906613644375257149`.
+This is used for registering commands with Discord using `npm run register` and `npm run dev-register`. It is the client ID of your specific bot account that you want to use, which can be found in the [Discord developer portal](https://discord.com/developers/applications) in the General Information tab of your bot, under `APPLICATION ID`. If you have developer mode enabled in your Discord client, you can also right click your bot and click `copy ID`, which will give you the same ID. It should look something like `906613644375257149`.
 ### githubToken
 Required<br>
 **KEEP SECRET**
 
 
-This is the personal access token for the Github account you want the bot to use. These can be generated under `Developer Settings -> Personal access tokens` in your account settings. If a malicious user gains access to it, they can use it to perform actions on the linked Github account according to the permissions you set. A good safety measure to take is to only give your tokens the permissions they absolutely need. You can always generate a new one with more permissions.
+This is the personal access token for the GitHub account you want the bot to use. These can be generated under `Developer Settings -> Personal access tokens` in your account settings. If a malicious user gains access to it, they can use it to perform actions on the linked GitHub account according to the permissions you set. A good safety measure to take is to only give your tokens the permissions they absolutely need. You can always generate a new one with more permissions.
 ### testGuildId
 Optional
 
 
-This is the ID of the Discord guild you want to use for testing. It can be found by enabling developer mode in your Discord client, right clicking the guild you want to use, and clicking `copy ID`. As it's only used in `npm dev-register`, it's not required, but it is highly recommended. `npm dev-register` deploys commands to the guild you give it the ID of, as long as it has the `application.commands` scope enabled in that guild. This is useful because global commands (deployed with `npm register`), are cached for 1 hour, which means they may not update in every guild immediately. 
+This is the ID of the Discord guild you want to use for testing. It can be found by enabling developer mode in your Discord client, right clicking the guild you want to use, and clicking `copy ID`. As it's only used in `npm run dev-register`, it's not required, but it is highly recommended. `npm run dev-register` deploys commands to the guild you give it the ID of, as long as it has the `applications.commands` scope enabled in that guild. This is useful because global commands (deployed with `npm run register`), are cached for 1 hour, which means they may not update in every guild immediately. 
 ### token
 Required<br>
 **KEEP SECRET**
@@ -83,7 +83,7 @@ Note that all of these values have been invalidated by the time this file was up
 ## Modifications
 This project uses the [MIT license](LICENSE), so you are free to modify it as you wish.
 ## Running the Bot
-Once you have your config.json set up and you want to run the bot, you can do so by first running `npm dev-register` to register commands into your testing guild, or `npm register` to register commands in every server (note that it may take up to an hour for global commands to update). Then, to actually run the bot, you can run `npm start`. You will need to keep the terminal window open for the bot to stay online.
+Once you have your config.json set up and you want to run the bot, you can do so by first running `npm run dev-register` to register commands into your testing guild, or `npm run register` to register commands in every server (note that it may take up to an hour for global commands to update). Then, to actually run the bot, you can run `npm start`. You will need to keep the terminal window open for the bot to stay online.
 
 ## Basic Commands
 ### easypull 
@@ -152,7 +152,7 @@ Arguments:
 
 
 `repo_name` defaults to the guild ID<br>
-Creates a new repository on Github for the guild the command was used in<br>
+Creates a new repository on GitHub for the guild the command was used in<br>
 The command will fail and you will be notified if `repo_name` is taken<br>
 The repository will be created at fireproofdiscord/`repo_name`
 
@@ -172,7 +172,7 @@ Arguments:
 
 `target` must be the name of a repository made by [fireproofdiscord](https://github.com/fireproofdiscord), or the full URL of any repository it has access to<br>
 Makes the guild the command was used in able to sync with a repository<br>
-This can be any [correctly formatted](#formatting) repository that [fireproofdiscord](https://github.com/fireproofdiscord) has access to (any public Github repository)<br>
+This can be any [correctly formatted](#formatting) repository that [fireproofdiscord](https://github.com/fireproofdiscord) has access to (any public GitHub repository)<br>
 The repository will be checked for the correct format when the command is used<br>
 After running this command, you can [push](#push-1) or [easypush](#easypush) to update the repository if you have permission<br>
 You can also run [fork](#fork) to make your own fork of the repository<br>
@@ -246,7 +246,7 @@ Arguments:
 `repo_name` must be the name of a repository made by the bot<br>
 `username` must be the username of a user to invite as a collaborator<br>
 The user will need to accept the invitation from the email they will receive from noreply@github.com<br>
-This lets the user push straight to the repository using any git client that supports Github<br>
+This lets the user push straight to the repository using any git client that supports GitHub<br>
 Any user can make a pull request, which will need to be accepted either using a git client or [praccept](#praccept)
 
 ### revokepushdiscord
@@ -264,7 +264,7 @@ Arguments:
 
 
 `repo_name` must be the name of a repository made by the bot<br>
-`username` must be the username of the Github account to revoke permissions from<br>
+`username` must be the username of the GitHub account to revoke permissions from<br>
 Revokes collaborator status from the user at `username`
 
 ### pull
