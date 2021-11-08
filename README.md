@@ -135,7 +135,7 @@ Arguments:
 
 
 Changes what happens when you connect a new repository with [easypull](#easypull) or [clone](#clone) in a server that already has a connected repository<br>
-`full` type also takes effect when cloning in a server that doesn't have a connected repository<br>
+`full` type also takes effect when connecting to a server that doesn't have a connected repository<br>
 All guilds are set to `replace` by default<br>
 `type` must be one of the following:
 ##### full
