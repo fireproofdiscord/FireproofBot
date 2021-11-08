@@ -17,7 +17,7 @@ Pushing means uploading the changes that have been made to GitHub, where they ca
 ### Pull
 Pulling means downloading the changes from GitHub to the local machine, and in this case changing the guild structure to match
 ### Clone
-Cloning sets the connected repository. It pulls automatically when you do it, but not after that by default.
+Cloning sets the connected repository. It pulls once automatically when you do it.
 ### Repository
 The place on GitHub where your specific files are stored<br>
 This description might seem irrelevant, but the bot stores your guild information in files<br>
@@ -47,7 +47,7 @@ If you do, it will look like `<@901858993188794430>` instead of `@User` when you
 Guild repositories must be structured like [this](https://github.com/fireproofdiscord/ExampleGuild)
 
 ## Running your own instance
-To get your own instance, you can clone or download this repository. Before you can run the bot, you will need to create a new file called `config.json` at the root of the project and fill it with a few pieces of information:
+To get your own instance, you can clone or download this repository. First you need to install dependencies with `npm install`, and then before you can run the bot, you will need to create a new file called `config.json` at the root of the project and fill it with a few pieces of information:
 ### clientId
 Required
 
@@ -70,14 +70,35 @@ Required<br>
 
 
 This is the token for your Discord bot. Think of it as a username and password combination that the system uses to log in as your bot. It can be found in the `Bot` tab of your bot's settings on the [Discord developer portal](https://discord.com/developers/applications), under `TOKEN`. If a malicious user finds this token, they can use it to do anything with your bot that it has permission to do, depending on the servers it's in. If that happens, you can go back to where you found the token and click `Regenerate` to invalidate the old token and generate a new one.
+### bitbucketUser
+Required<br>
+
+
+The username for the Bitbucket account you want to use. Used as part of the login credentials.
+### bitbucketPass
+Required<br>
+**KEEP SECRET**
+
+
+The password for the Bitbucket account you want to use. **Highly recommended to use an app password.** If you use an app password, generated in the `App passwords` tab of `Personal settings`, you can choose what permissions any program logged in with the password will have, it can only be used through the API, and you can still have 2FA. If a malicious user gets an app password, they will only be able to do what you gave the password permission to do through the API and you can revoke it. By default, the following permissions are required:
+##### Repositories
+- Admin
+- Delete
+##### Pull requests
+- Write
+##### Webhooks
+- Read and write
+
 ## Example config.json
 Note that all of these values have been invalidated by the time this file was uploaded, as they are only to show you how your config.json file should look
 ```json
 {
 	"clientId": "906613644375257149",
-	"githubToken": "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",
 	"testGuildId": "906614101449527307",
-	"token": "OTA2NjEzNjQ0Mzc1MjU3MTQ5.YYbLwA.4q9_6j0YK5MC2LsQ4dSH4R0e4VM"
+	"token": "OTA2NjEzNjQ0Mzc1MjU3MTQ5.YYbLwA.4q9_6j0YK5MC2LsQ4dSH4R0e4VM",
+	"githubToken": "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",
+	"bitbucketUser": "ExampleUsername",
+	"bitbucketPass": "Aft72fXvUeW3RrW8QQe2"
 }
 ```
 ## Modifications

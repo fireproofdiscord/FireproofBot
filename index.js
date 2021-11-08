@@ -1,17 +1,28 @@
-const { readdirSync } = require("fs");
+const { readdirSync, readFileSync } = require("fs");
 const { Client, Collection, Intents } = require("discord.js");
-const { Octokit, App } = require("octokit");
-const { token, githubToken } = require("./config.json");
+const { token, githubToken, bitbucketUser, bitbucketPass } = require("./config.json");
+const { Buffer } = require("buffer");
+const simpleGit = require("simple-git");
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS]});
+const git = simpleGit("../FireproofRepos");
+const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 client.commands = new Collection();
 const commandFiles = readdirSync("./commands").filter(file => file.endsWith(".js"));
 
-const octokit = new Octokit({
-	userAgent: "fireproof-discord",
-	auth: githubToken
-});
+const credentials = {
+	github: githubToken,
+	bitbucket: {
+		user: bitbucketUser,
+		pass: bitbucketPass
+	}
+}
+
+const config = {
+	credentials: credentials,
+	git: git,
+	license: readFileSync("repo_license.txt")
+}
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
@@ -30,16 +41,14 @@ client.on("interactionCreate", async interaction => {
 	if (!command) return;
 
 	try {
-		if (command.length === 3) {
-			await command.execute(interaction, octokit, githubToken);
-		} else if (command.length === 2) {
-			await command.execute(interaction, octokit);
+		if (command.execute.length === 2) {
+			await command.execute(interaction, {...config});
 		} else {
 			await command.execute(interaction);
 		}
 	} catch (error) {
 		console.error(error);
-		await interaction.reply({ content: "There was an error while executing this command.", ephemeral: true });
+		await interaction.reply({ content: "There was an error while executing this command", ephemeral: true });
 	}
 });
 
