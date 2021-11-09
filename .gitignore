@@ -4,3 +4,4 @@ node_modules/
 .vscode/
 test.js
 repos.sqlite
+example.js
