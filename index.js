@@ -3,6 +3,30 @@ const { Client, Collection, Intents } = require("discord.js");
 const { token, githubToken, bitbucketUser, bitbucketPass } = require("./config.json");
 const { Buffer } = require("buffer");
 const simpleGit = require("simple-git");
+const { Sequelize, DataTypes } = require("sequelize");
+const { deburr } = require("lodash");
+
+const sequelize = new Sequelize({
+	dialect: "sqlite",
+	storage: "data/repos.sqlite",
+	logging: false
+});
+
+const Repo = sequelize.define("Repo", {
+	slug: {
+		type: DataTypes.TEXT,
+		allowNull: false
+	},
+	guildId: {
+		type: DataTypes.TEXT,
+		allowNull: false,
+		unique: true,
+		primaryKey: true
+	}
+}, {
+	tableName: "repos",
+	timestamps: false
+});
 
 const git = simpleGit("../FireproofRepos");
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
@@ -32,7 +56,8 @@ const config = {
 			.toLowerCase()
 			.trim()
 			.replace(/ /g, "-"); // replace spaces with dashes
-	}
+	},
+	Repo: Repo
 }
 
 for (const file of commandFiles) {
@@ -53,7 +78,7 @@ client.on("interactionCreate", async interaction => {
 
 	try {
 		if (command.execute.length === 2) {
-			await command.execute(interaction, {...config});
+			await command.execute(interaction, { ...config });
 		} else {
 			await command.execute(interaction);
 		}
