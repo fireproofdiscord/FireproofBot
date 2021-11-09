@@ -21,7 +21,18 @@ const credentials = {
 const config = {
 	credentials: credentials,
 	git: git,
-	license: readFileSync("repo_license.txt")
+	license: readFileSync("repo_license.txt"),
+	slugify(repo_name) {
+		// from https://github.com/codsen/codsen/blob/main/packages/bitbucket-slug/src/main.ts
+		return deburr(repo_name)
+			.replace(/\]\((.*?)\)/g, "") // remove all within brackets (Markdown links) 
+			.replace(/ [-]+ /gi, " ")
+			.replace(/[^\w\d\s-]/g, "") // remove non-letters
+			.replace(/\s+/g, " ") // collapse whitespace
+			.toLowerCase()
+			.trim()
+			.replace(/ /g, "-"); // replace spaces with dashes
+	}
 }
 
 for (const file of commandFiles) {

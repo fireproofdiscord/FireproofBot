@@ -7,7 +7,7 @@ const { writeFileSync } = require("fs");
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("init")
-		.setDescription("Creates a new repository for the guild")
+		.setDescription("Creates a new repository for the guild on Bitbucket")
 		.addStringOption(option => 
 			option.setName("repo_name")
 				.setDescription("Name of the repository to make. Defaults to the guild ID")
@@ -26,22 +26,12 @@ module.exports = {
 		console.log(config);
 
 		let repo_name = interaction.options.getString("repo_name");
-		let slug;
 
 		if (repo_name === null) {
 			repo_name = interaction.guildId;
-			slug = repo_name;
-		} else {
-			// from https://github.com/codsen/codsen/blob/main/packages/bitbucket-slug/src/main.ts
-			slug = deburr(repo_name)
-				.replace(/\]\((.*?)\)/g, "") // remove all within brackets (Markdown links) 
-				.replace(/ [-]+ /gi, " ")
-				.replace(/[^\w\d\s-]/g, "") // remove non-letters
-				.replace(/\s+/g, " ") // collapse whitespace
-				.toLowerCase()
-				.trim()
-				.replace(/ /g, "-"); // replace spaces with dashes
 		}
+		
+		const slug = config.slugify(repo_name);
 	
 		try {
 			await git.listRemote([`https://${bitbucketUser}:${bitbucketPass}@bitbucket.org/fireproofdiscord/${slug}`]);
