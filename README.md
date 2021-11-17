@@ -206,8 +206,8 @@ Arguments:
 
 
 `targets` can be any combination of channels, categories, emojis, and roles<br>
-Adds all items in `targets` to the ignore list<br>
-Anything on the ignore list is not synced to the connected repository
+Adds all items in `targets` to .gitignore<br>
+Anything in .gitignore is not synced to the connected repository
 #### Note
 This does not remove already added items from the repo. For that see [rm](#rm)
 
