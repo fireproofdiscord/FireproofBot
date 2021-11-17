@@ -1,1 +1,8 @@
-CREATE TABLE `repos` (`slug` TEXT NOT NULL, `guildId` TEXT NOT NULL UNIQUE PRIMARY KEY)
+This file contains the table schemas for repos.sqlite
+
+CREATE TABLE "repos" (
+	"uuid"	TEXT NOT NULL,
+	"slug"	TEXT NOT NULL,
+	"guildId"	TEXT NOT NULL UNIQUE,
+	PRIMARY KEY("uuid")
+)
