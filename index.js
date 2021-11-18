@@ -13,6 +13,13 @@ const sequelize = new Sequelize({
 });
 
 const Repo = sequelize.define("Repo", {
+	uuid: {
+		type: DataTypes.UUID,
+		defaultValue: DataTypes.UUIDV4,
+		allowNull: false,
+		unique: true,
+		primaryKey: true
+	},
 	slug: {
 		type: DataTypes.TEXT,
 		allowNull: false
@@ -20,11 +27,36 @@ const Repo = sequelize.define("Repo", {
 	guildId: {
 		type: DataTypes.TEXT,
 		allowNull: false,
-		unique: true,
-		primaryKey: true
+		unique: true
 	}
 }, {
 	tableName: "repos",
+	timestamps: false
+});
+
+const Role = sequelize.define("Role", {
+	uuid: {
+		type: DataTypes.UUID,
+		defaultValue: DataTypes.UUIDV4,
+		allowNull: false,
+		unique: true,
+		primaryKey: true
+	},
+	number: {
+		type: DataTypes.NUMBER,
+		allowNull: false
+	},
+	roleId: {
+		type: DataTypes.STRING(18),
+		allowNull: false,
+		unique: true
+	},
+	guildId: {
+		type: DataTypes.STRING(18),
+		allowNull: false
+	}
+}, {
+	tableName: "roles",
 	timestamps: false
 });
 
@@ -57,7 +89,8 @@ const config = {
 			.trim()
 			.replace(/ /g, "-"); // replace spaces with dashes
 	},
-	Repo: Repo
+	Repo: Repo,
+	Role: Role
 }
 
 for (const file of commandFiles) {
