@@ -6,3 +6,11 @@ CREATE TABLE "repos" (
 	"guildId"	TEXT NOT NULL UNIQUE,
 	PRIMARY KEY("uuid")
 )
+
+CREATE TABLE "roles" (
+	"uuid"	TEXT NOT NULL,
+	"number"	TEXT NOT NULL,
+	"roleId"	TEXT NOT NULL,
+	"guildId"	TEXT NOT NULL,
+	PRIMARY KEY("uuid")
+)
