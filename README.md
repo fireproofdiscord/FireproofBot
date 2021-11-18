@@ -1,7 +1,7 @@
 # Fireproof
 Discord bot to manage guilds using git<br>
-Only supports GitHub (for now)<br>
-&lt;argument&gt; denotes a required argument<br>
+Only creates repositories on Bitbucket but can also use Github and Gitlab<br>
+lt;argument&gt; denotes a required argument<br>
 \[argument\] denotes an optional argument<br>
 
 All repositories made by this bot directly have the MIT license. If you want to change this, feel free to fork the project<br>
