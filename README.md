@@ -1,6 +1,6 @@
 # Fireproof
 Discord bot to manage guilds using git<br>
-Only supports GitHub (for now)<br>
+Only creates repositories on Bitbucket but can also use Github and Gitlab<br>
 &lt;argument&gt; denotes a required argument<br>
 \[argument\] denotes an optional argument<br>
 
@@ -193,7 +193,7 @@ Arguments:
 
 `target` must be the name of a repository made by [fireproofdiscord](https://github.com/fireproofdiscord), or the full URL of any repository it has access to<br>
 Makes the guild the command was used in able to sync with a repository<br>
-This can be any [correctly formatted](#formatting) repository that [fireproofdiscord](https://github.com/fireproofdiscord) has access to (any public GitHub repository)<br>
+This can be any [correctly formatted](#formatting) repository that [fireproofdiscord](https://github.com/fireproofdiscord) has access to (any public GitHub, Gitlab, or Bitbucket repository)<br>
 The repository will be checked for the correct format when the command is used<br>
 After running this command, you can [push](#push-1) or [easypush](#easypush) to update the repository if you have permission<br>
 You can also run [fork](#fork) to make your own fork of the repository<br>
