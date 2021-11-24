@@ -1,4 +1,4 @@
-const { readdirSync, readFileSync } = require("fs");
+const { readdirSync, readFileSync, existsSync } = require("fs");
 const { Client, Collection, Intents } = require("discord.js");
 const { token, githubToken, bitbucketUser, bitbucketPass } = require("./config.json");
 const { Buffer } = require("buffer");
@@ -98,8 +98,12 @@ for (const file of commandFiles) {
 	client.commands.set(command.data.name, command);
 }
 
-client.once("ready", () => {
+client.once("ready", async () => {
 	console.log("Bot ready");
+
+	if (!existsSync("./data/data.sqlite")) {
+		await sequelize.sync();
+	}
 });
 
 client.on("interactionCreate", async interaction => {
