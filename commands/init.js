@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { MessageActionRow, MessageButton, CategoryChannel, TextChannel, VoiceChannel } = require("discord.js");
+const { MessageActionRow, MessageButton } = require("discord.js");
 const https = require("https");
 const { promises } = require("fs");
 const { getOverwrites } = require("../func.js");
@@ -26,11 +26,7 @@ module.exports = {
 		const bitbucketPass = config.credentials.bitbucket.pass;
 		const git = config.git;
 
-		let repo_name = interaction.options.getString("repo_name");
-
-		if (!repo_name) {
-			repo_name = guildId;
-		}
+		let repo_name = interaction.options.getString("repo_name") || guildId;
 
 		const slug = config.slugify(repo_name);
 
@@ -60,11 +56,11 @@ module.exports = {
 						new MessageButton()
 							.setCustomId("replace")
 							.setLabel("Replace")
-							.setStyle("SUCCESS"),
+							.setStyle("PRIMARY"),
 						new MessageButton()
 							.setCustomId("cancel")
 							.setLabel("Cancel")
-							.setStyle("DANGER")
+							.setStyle("SECONDARY")
 					);
 
 				const confirmation = await interaction.followUp({
@@ -137,6 +133,7 @@ async function init(config, slug, guildId, interaction, repo_name) {
 				await git.clone(`https://${bitbucketUser}:${bitbucketPass}@bitbucket.org/fireproofdiscord/${slug}`, guildId);
 
 				const configFile = {
+					creator: interaction.user.id,
 					discordCollaborators: [
 						interaction.user.id
 					],
