@@ -12,19 +12,21 @@ Most of the [advanced commands](#advanced-commands) can be run from any git clie
 You can even use your own repository under your account if you do this
 
 ## Terms
-### Push
-Pushing means uploading the changes that have been made to GitHub, where they can be pulled
-### Pull
-Pulling means downloading the changes from GitHub to the local machine, and in this case changing the guild structure to match
-### Clone
-Cloning sets the connected repository. It pulls once automatically when you do it.
-### Repository
-The place on GitHub where your specific files are stored<br>
+
+### Remote Repository
+The place on "the cloud" (eg. Bitbucket) where your specific files are stored<br>
 This description might seem irrelevant, but the bot stores your guild information in files<br>
 You may see this shortened as `repo` in argument names, such as `repo_name` in [easypush](#easypush), but it means the same thing
 ### Connected Repository
 The repository that the guild the command was used in is connected to<br>
 You can connect a repository to a guild using [easypull](#easypull) or [clone](#clone)
+### Push
+Pushing means uploading the changes that have been made to remote, where they can be pulled
+### Pull
+Pulling means downloading the changes from remote to the local machine, and in this case changing the guild structure to match
+### Clone
+Cloning sets the connected repository. It pulls once automatically when you do it.
+
 
 ## Arguments
 ### Channels
@@ -103,8 +105,9 @@ Note that all of these values have been invalidated by the time this file was up
 ```
 ## Modifications
 This project uses the [MIT license](LICENSE), so you are free to modify it as you wish.
+
 ## Running the Bot
-Once you have your config.json set up and you want to run the bot, you can do so by first running `npm run dev-register` to register commands into your testing guild, or `npm run register` to register commands in every server (note that it may take up to an hour for global commands to update). Then, to actually run the bot, you can run `npm start`. You will need to keep the terminal window open for the bot to stay online.
+Once you have your config.json set up and you want to run the bot, you can do so by first opening a terminal, such as Powershell on Windows, installing node.js (v16+) and npm, and running `npm run dev-register` to register commands into your testing guild, or `npm run register` to register commands in every server (note that it may take up to an hour for global commands to update). Then, to actually run the bot, you can run `npm start`. You will need to keep the terminal window open for the bot to stay online.
 
 ## Basic Commands
 ### easypull 
