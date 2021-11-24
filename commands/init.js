@@ -157,7 +157,7 @@ async function init(config, slug, guildId, interaction, repo_name) {
 				for (let role of roles) {
 					role = role[1]
 
-					// next iteration if role is managed by an integration or bot
+					// continue if role is managed by an integration or bot
 					if (role.tags) {
 						if (role.tags.botId || role.tags.integrationId) {
 							continue;
