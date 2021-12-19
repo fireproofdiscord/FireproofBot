@@ -1,4 +1,4 @@
-const { readdirSync, readFileSync, existsSync } = require("fs");
+const { readdirSync, existsSync } = require("fs");
 const { Client, Collection, Intents } = require("discord.js");
 const {
 	token,
@@ -6,7 +6,6 @@ const {
 	bitbucketUser,
 	bitbucketPass,
 } = require("./config.json");
-const { Buffer } = require("buffer");
 const simpleGit = require("simple-git");
 const { Sequelize, DataTypes } = require("sequelize");
 const { deburr } = require("lodash");
