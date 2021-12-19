@@ -1,4 +1,0 @@
-This file contains the table schemas for repos.sqlite
-
-CREATE TABLE `repos` (`uuid` UUID NOT NULL UNIQUE PRIMARY KEY, `slug` TEXT NOT NULL, `guildId` TEXT NOT NULL UNIQUE)
-CREATE TABLE `roles` (`uuid` UUID NOT NULL UNIQUE PRIMARY KEY, `number` NUMBER NOT NULL, `roleId` VARCHAR(18) NOT NULL UNIQUE, `guildId` VARCHAR(18) NOT NULL)
