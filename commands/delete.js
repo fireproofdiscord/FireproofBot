@@ -6,9 +6,12 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("delete")
 		.setDescription("Deletes a bot-owned guild repository from Bitbucket")
-		.addStringOption(option =>
-			option.setName("slug")
-				.setDescription("Slug (URL ID) of the repository to delete. Defaults to the connected repository")	
+		.addStringOption((option) =>
+			option
+				.setName("slug")
+				.setDescription(
+					"Slug (URL ID) of the repository to delete. Defaults to the connected repository"
+				)
 				.setRequired(false)
 		),
 	async execute(interaction, config) {
@@ -18,19 +21,19 @@ module.exports = {
 		const bitbucketPass = config.credentials.bitbucket.pass;
 		const git = config.git;
 
-		try {			
-			await git.listRemote([`https://${bitbucketUser}:${bitbucketPass}@bitbucket.org/fireproofdiscord/${slug}`]);
+		try {
+			await git.listRemote([
+				`https://${bitbucketUser}:${bitbucketPass}@bitbucket.org/fireproofdiscord/${slug}`,
+			]);
 		} catch (err) {
 			await interaction.reply({
 				content: `No repository exists at https://bitbucket.org/fireproofdiscord/${slug}`,
-				ephemeral: true
+				ephemeral: true,
 			});
 
 			return;
 		}
 
 		await interaction.deferReply();
-
-		
-	}
-}
+	},
+};

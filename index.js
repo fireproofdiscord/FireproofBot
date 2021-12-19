@@ -94,7 +94,7 @@ const config = {
 	slugify(repo_name) {
 		// from https://github.com/codsen/codsen/blob/main/packages/bitbucket-slug/src/main.ts
 		return deburr(repo_name)
-			.replace(/\]\((.*?)\)/g, "") // remove all within brackets (Markdown links)
+			.replace(/\]\((.*?)\)/g, "") // remove everything within brackets (Markdown links)
 			.replace(/ [-]+ /gi, " ")
 			.replace(/[^\w\d\s-]/g, "") // remove non-letters
 			.replace(/\s+/g, " ") // collapse whitespace
